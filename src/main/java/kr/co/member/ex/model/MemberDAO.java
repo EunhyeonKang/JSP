@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -91,7 +92,40 @@ public class MemberDAO {
 		}
 		return md;
 	}
+	
+	public ArrayList<MemberDTO> selectMember() {
+		MemberDTO md= new MemberDTO();
+		ArrayList<MemberDTO> list = new ArrayList<MemberDTO>();
+		try {
+			//conn = JDBCConnection.getConnection();
+			conn = ds.getConnection();
+			String sql = "SELECT * FROM member";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 
+				md.setId(rs.getString("ID"));
+				md.setPw(rs.getString("PW"));
+				md.setName(rs.getString("NAME"));
+				list.add(md);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
 	public int ModifyOk(String id, String pw, String phone) {
 		// SQL 쿼리 작성
 		String sql = "UPDATE member SET pw=?, phone1=? WHERE id=?";

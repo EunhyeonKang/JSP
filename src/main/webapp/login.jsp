@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보수정</title>
+<title>로그인</title>
 <style>
 	.group71{
 		    width: 100%;
@@ -84,7 +84,7 @@
 		
 		}
 		
-		#modify2{
+		#login2{
 		    box-sizing: border-box;
 		    width: 510px;
 		    height: 50px;
@@ -105,57 +105,48 @@
 		    color: #008485;
 		}
 		
-		.flexModify{
+		.flexlogin{
 		    display: inline-block;
 		    width: 510px;
-		}	   		
-		.gradio{
-		    padding: 15px;
-		    width: 10%;
-		}	   
+		}	   			   
 </style>
 </head>
-<body>
-	<%
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-	%>
+<%
+	String result = request.getParameter("result");
+%>
+<body onload="showAlert()">
 	<div class="group71">
         <div class="group31">
-			<form action="/ModifyOk" method="post">
-				<span id="login">회원정보수정</span>
+            <form action="/LoginOk" method="post">
+                <span id="login">로그인</span>
                 <br/>
-                <div class="flexModify"> 
+                <div class="flexlogin">
                     <span class="idbox">아이디</span>
-                    <input type="text" name="id" class="rec6" id="rec6" value="<%=id %>" readonly="readonly"/>                     
+                    <input type="text" name="id" class="rec6" id="rec6" placeholder="아이디를 입력해주세요"/>                     
                 </div>
-                 <br/>
-                <div class="flexModify"> 
-                    <span class="idbox">패스워드</span>
-                    <input type="password" name="pw" class="rec6" id="rec6" placeholder="패스워드를 입력해주세요"/>                     
+                <br/>
+                <div class="flexlogin">
+                    <span class="idbox">비밀번호</span>
+                    <input type="password" name="pw" class="rec6" id="rec6" placeholder="비밀번호를 입력해주세요"/>                     
                 </div>
-                 <br/>
-                <div class="flexModify"> 
-                    <span class="idbox">이름</span>
-                    <input type="text" name="name" class="rec6" id="rec6" value="<%=name%>" readonly="readonly"/>                     
-                </div>
-                 <br/>
-                <div class="flexModify"> 
-                    <span class="idbox">핸드폰1</span>
-                    <input type="text" name="phone1" class="rec6" id="rec6" placeholder="핸드폰을 입력해주세요"/>                     
-                </div>
-                 <br/>
-                <div class="flexModify">
-	                 <span class="idbox">성별</span>
-	                남 : <input type="radio" name="gender" value="M" class="gradio" id="gradio">
-					여 : <input type="radio" name="gender" value="F" class="gradio" id="gradio"><br/>
-	             </div>
-	             <br/>
-				<button id="modify2">
-	                    <span>수정하기</span>
-	            </button>
-			</form>
-		</div>
+                <br/>
+                
+                <button id="login2">
+                    <span>로그인하기</span>
+                </button>
+            </form>
+            <a href="join.html">회원가입</a>
+            <a href="main.jsp">메인페이지</a>
+        </div>
     </div>
 </body>
+<script type="text/javascript">
+    function showAlert() {
+    	if(<%=result%> >0){
+    		alert("회원가입 성공!");
+    	}else{
+    		alert("회원가입을 해주세요.");
+    	}
+    }
+  </script>
 </html>

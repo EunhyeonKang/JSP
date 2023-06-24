@@ -53,7 +53,7 @@ public class JoinOk extends HttpServlet {
 			int result = mt.JoinOk(member);
 			if (result > 0) {
 	            // 삽입 성공 시
-	            response.sendRedirect("/JoinResult?id="+id);
+	            response.sendRedirect("login.jsp?result="+result);
 	        } else {
 	            // 삽입 실패 시
 	            response.sendRedirect("join.html");

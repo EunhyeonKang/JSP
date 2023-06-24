@@ -43,7 +43,6 @@ public class ModifyOk extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
-		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		String id = request.getParameter("id");
@@ -51,7 +50,6 @@ public class ModifyOk extends HttpServlet {
 		String phone = request.getParameter("phone1");
 		PrintWriter out = response.getWriter();
 		try {
-
 			MemberDAO dt = new MemberDAO();
 			MemberDTO idCheck = dt.LoginOk(id);
 			if (idCheck == null) {
@@ -60,7 +58,7 @@ public class ModifyOk extends HttpServlet {
 				int result = dt.ModifyOk(id, pw, phone);
 				if (result > 0) {
 					RequestDispatcher dispatcher = request
-							.getRequestDispatcher("ModifyResult.jsp?id=" + id + "&result=" + result);
+							.getRequestDispatcher("modifyResult.jsp?id=" + id);
 					dispatcher.forward(request, response);
 					return;
 

@@ -61,15 +61,17 @@ public class LoginOk extends HttpServlet {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("id", md.getId());
 					session.setAttribute("name", md.getName());
-
-					//System.out.println("login success");
+					//System.out.println("login success"); 
+					out.println("<script type='textjavascript'>");
+					out.println("alert('로그인 성공');");
+					out.println("</script>");
 					RequestDispatcher dispatcher = request
 							.getRequestDispatcher("loginResult.jsp?id=" + md.getId() + "&name=" + md.getName());
 					dispatcher.forward(request, response);
 					return;
 				} else {
 					//System.out.println("login fail");
-					RequestDispatcher dispatcher = request.getRequestDispatcher("login.html");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 					dispatcher.forward(request, response);
 					return;
 				}
